@@ -4,15 +4,16 @@ import os
 
 os.chdir(os.path.dirname(__file__))
 blind_watermark.bw_notes.close()
+# print(os.getcwd())  # 获取当前工作目录路径
 
 bwm1 = WaterMark(password_img=1, password_wm=1)
 bwm1.read_img('../Pictures/test.png')
 wm = '2201020228 朱竞阳'
 bwm1.read_wm(wm, mode='str')
-bwm1.embed('../Pictures/test_with_mark.png')
+bwm1.embed('../Pictures/test_with_str_mark.png')
 len_wm = len(bwm1.wm_bit)
 print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
 
 bwm1 = WaterMark(password_img=1, password_wm=1)
-wm_extract = bwm1.extract('../Pictures/test_with_mark.png', wm_shape=len_wm, mode='str')
+wm_extract = bwm1.extract('../Pictures/test_with_str_mark.png', wm_shape=len_wm, mode='str')
 print(wm_extract)
