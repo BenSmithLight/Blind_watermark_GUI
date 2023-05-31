@@ -1,19 +1,28 @@
+# 导入库函数
 from blind_watermark import WaterMark
 import blind_watermark
 import os
 
+# 更改工作目录到当前文件夹
 os.chdir(os.path.dirname(__file__))
-blind_watermark.bw_notes.close()
+
 # print(os.getcwd())  # 获取当前工作目录路径
 
-bwm1 = WaterMark(password_img=1, password_wm=1)
-bwm1.read_img('../Pictures/test.png')
+# 向图像添加水印
+bwm = WaterMark(password_img=1, password_wm=1)
+# 读取载体图像
+bwm.read_img('../Pictures/test2.jpg')
+# 设置水印内容
 wm = '2201020228 朱竞阳'
-bwm1.read_wm(wm, mode='str')
-bwm1.embed('../Pictures/test_with_str_mark.png')
-len_wm = len(bwm1.wm_bit)
+# 读取水印
+bwm.read_wm(wm, mode='str')
+# 输出叠加水印的图片
+bwm.embed('../Pictures/test_with_str_mark.png')
+# 获取水印长度
+len_wm = len(bwm.wm_bit)
 print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
 
-bwm1 = WaterMark(password_img=1, password_wm=1)
-wm_extract = bwm1.extract('../Pictures/test_with_str_mark.png', wm_shape=len_wm, mode='str')
+# 从图像中提取水印
+bwm = WaterMark(password_img=1, password_wm=1)
+wm_extract = bwm.extract('../Pictures/test_with_str_mark.png', wm_shape=len_wm, mode='str')
 print(wm_extract)

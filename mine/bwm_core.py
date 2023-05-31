@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-# coding=utf-8
-# @Time    : 2021/12/17
-# @Author  : github.com/guofei9987
 import numpy as np
 from numpy.linalg import svd
 import copy
@@ -12,6 +8,7 @@ from pool import AutoPool
 
 
 class WaterMarkCore:
+
     def __init__(self, password_img=1, mode='common', processes=None):
         self.block_shape = np.array([4, 4])
         self.password_img = password_img
@@ -19,9 +16,11 @@ class WaterMarkCore:
 
         # init data
         self.img, self.img_YUV = None, None  # self.img 是原图，self.img_YUV 对像素做了加白偶数化
-        self.ca, self.hvd, = [np.array([])] * 3, [np.array([])] * 3  # 每个通道 dct 的结果
+        self.ca, self.hvd, = [np.array([])] * 3, [np.array([])
+                                                  ] * 3  # 每个通道 dct 的结果
         self.ca_block = [np.array([])] * 3  # 每个 channel 存一个四维 array，代表四维分块后的结果
-        self.ca_part = [np.array([])] * 3  # 四维分块后，有时因不整除而少一部分，self.ca_part 是少这一部分的 self.ca
+        self.ca_part = [np.array([])
+                        ] * 3  # 四维分块后，有时因不整除而少一部分，self.ca_part 是少这一部分的 self.ca
 
         self.wm_size, self.block_num = 0, 0  # 水印的长度，原图片可插入信息的个数
         self.pool = AutoPool(mode=mode, processes=processes)
@@ -30,15 +29,20 @@ class WaterMarkCore:
         self.alpha = None  # 用于处理透明图
 
     def init_block_index(self):
-        self.block_num = self.ca_block_shape[0] * self.ca_block_shape[1]
+        self.block_num = self.ca_block_shape[0] * self.ca_block_shape[
+            1]  # 计算图像块的总数
+        # 检查水印长度是否超过最大嵌入容量
         assert self.wm_size < self.block_num, IndexError(
-            '最多可嵌入{}kb信息，多于水印的{}kb信息，溢出'.format(self.block_num / 1000, self.wm_size / 1000))
+            '最多可嵌入{}kb信息，多于水印的{}kb信息，溢出'.format(self.block_num / 1000,
+                                                self.wm_size / 1000))
         # self.part_shape 是取整后的ca二维大小,用于嵌入时忽略右边和下面对不齐的细条部分。
         self.part_shape = self.ca_block_shape[:2] * self.block_shape
-        self.block_index = [(i, j) for i in range(self.ca_block_shape[0]) for j in range(self.ca_block_shape[1])]
+        # 包含_self_.ca_block_shape前两个维度的所有索引组合
+        self.block_index = [(i, j) for i in range(self.ca_block_shape[0])
+                            for j in range(self.ca_block_shape[1])]
 
     def read_img_arr(self, img):
-        # 处理透明图
+        # 对含有透明部分图像，只取前三个通道
         self.alpha = None
         if img.shape[2] == 4:
             if img[:, :, 3].min() < 255:
@@ -47,24 +51,58 @@ class WaterMarkCore:
 
         # 读入图片->YUV化->加白边使像素变偶数->四维分块
         self.img = img.astype(np.float32)
-        self.img_shape = self.img.shape[:2]
+        self.img_shape = self.img.shape[:2]  # 获取图片的长宽
 
-        # 如果不是偶数，那么补上白边，Y（明亮度）UV（颜色）
-        self.img_YUV = cv2.copyMakeBorder(cv2.cvtColor(self.img, cv2.COLOR_BGR2YUV),
-                                          0, self.img.shape[0] % 2, 0, self.img.shape[1] % 2,
-                                          cv2.BORDER_CONSTANT, value=(0, 0, 0))
+        # 为图片添加白色边框，保持长宽为偶数
+        self.img_YUV = cv2.copyMakeBorder(
+            cv2.cvtColor(self.img,
+                         cv2.COLOR_BGR2YUV),  # 将读取的图片由RGB转换为YUV格式，Y是明亮度，UV是颜色
+            0,  # 上边
+            self.img.shape[0] % 2,  # 下边
+            0,  # 左边
+            self.img.shape[1] % 2,  # 右边
+            cv2.BORDER_CONSTANT,  # 添加边框的类型为常数
+            value=(0, 0, 0))  # 边框的颜色白色
 
+        # 获取满足离散小波变换要求的、大于原图像宽高且为2的幂的新宽高（小波变换要求为2的幂次）
         self.ca_shape = [(i + 1) // 2 for i in self.img_shape]
 
-        self.ca_block_shape = (self.ca_shape[0] // self.block_shape[0], self.ca_shape[1] // self.block_shape[1],
-                               self.block_shape[0], self.block_shape[1])
-        strides = 4 * np.array([self.ca_shape[1] * self.block_shape[0], self.block_shape[1], self.ca_shape[1], 1])
+        # 计算图像分块的大小（每个分块大小设置为4*4）[减小运算复杂度和加速运算速度、满足一些基于小块的特征提取算法的要求]
+        self.ca_block_shape = (
+            self.ca_shape[0] // self.block_shape[0],  # 水平方向分块数
+            self.ca_shape[1] // self.block_shape[1],  # 垂直方向分块数
+            self.block_shape[0],  # 分块的行
+            self.block_shape[1])  # 分块的列
+
+        # 构建四维数组ca_block时每个维度需要的间距，每个维度上两元素之间的间隔
+        strides = 4 * np.array([
+            self.ca_shape[1] * self.block_shape[0], self.block_shape[1],
+            self.ca_shape[1], 1
+        ])
+        # 举例分析
+        # self.ca_shape = (360, 640)
+        # self.block_shape = (4, 4)
+        # strides = 4 * np.array([2560, 4, 640, 1])
+        #             = [10240, 16, 2560, 4]
+        # 1. ca_block在第1维(频带维)的间距是10240,用于存放LL,LH和HL3个频带
+        # 2. 第2维(分块维)的间距是16,用于存放每个频带内的小块
+        # 3. 第3维(行维)的间距是2560,用于存放每个小块内的行
+        # 4. 第4维(像素维)的间距是4,用于存放每个行内的像素
 
         for channel in range(3):
-            self.ca[channel], self.hvd[channel] = dwt2(self.img_YUV[:, :, channel], 'haar')
-            # 转为4维度
-            self.ca_block[channel] = np.lib.stride_tricks.as_strided(self.ca[channel].astype(np.float32),
-                                                                     self.ca_block_shape, strides)
+            # 使用haar小波变换对图像进行二维离散小波变换，返回值为LL,LH,HL,HH，caself.ca包含LL,LH和HL三个频带,self.hvd包含HH频带
+            self.ca[channel], self.hvd[channel] = dwt2(
+                self.img_YUV[:, :, channel], 'haar')
+            # 将三个频带数据转为四维数组
+            self.ca_block[channel] = np.lib.stride_tricks.as_strided(
+                self.ca[channel].astype(np.float32), self.ca_block_shape,
+                strides)
+            # 第1维区分不同频带 第2维区分小块 第3维区分行 第4维区分像素
+            # 1. LL,LH和HL频带包含了主要的图像信息和能量,对很多算法来说已经足够。
+            # 2. HH频带主要包含高频噪声,提供的信息和能量很小,而且可能导致一定误差,所以可以忽略。
+            # 3. 减小运算量和提高效率。忽略HH频带可以避免不必要的运算,简化算法。
+            # 4. LL,LH和HL频带包含了低频和中频图像结构和纹理信息,这些信息对很多图像分析算法更为重要和感兴趣。
+            # 第1维表示频率维度的变化,第2维表示空间维度的变化,第3-4维表示每个块内部数据。这种结构和图像Wavelet变换的结果对应得很好
 
     def read_wm(self, wm_bit):
         self.wm_bit = wm_bit
@@ -83,7 +121,8 @@ class WaterMarkCore:
         block_dct = dct(block)
 
         # 加密（打乱顺序）
-        block_dct_shuffled = block_dct.flatten()[shuffler].reshape(self.block_shape)
+        block_dct_shuffled = block_dct.flatten()[shuffler].reshape(
+            self.block_shape)
         u, s, v = svd(block_dct_shuffled)
         s[0] = (s[0] // self.d1 + 1 / 4 + 1 / 2 * wm_1) * self.d1
         if self.d2:
@@ -104,27 +143,36 @@ class WaterMarkCore:
         return idct(np.dot(u, np.dot(np.diag(s), v)))
 
     def embed(self):
+        # 初始化参数
         self.init_block_index()
 
         embed_ca = copy.deepcopy(self.ca)
         embed_YUV = [np.array([])] * 3
 
-        self.idx_shuffle = random_strategy1(self.password_img, self.block_num,
-                                            self.block_shape[0] * self.block_shape[1])
+        # 利用password_img作为随机数种子对分块进行乱序
+        self.idx_shuffle = random_strategy1(
+            self.password_img, self.block_num,
+            self.block_shape[0] * self.block_shape[1])
+        # 对三个通道分别进行嵌入
         for channel in range(3):
+            # 将水印嵌入到每个分块的中
             tmp = self.pool.map(self.block_add_wm,
-                                [(self.ca_block[channel][self.block_index[i]], self.idx_shuffle[i], i)
+                                [(self.ca_block[channel][self.block_index[i]],
+                                  self.idx_shuffle[i], i)
                                  for i in range(self.block_num)])
 
             for i in range(self.block_num):
                 self.ca_block[channel][self.block_index[i]] = tmp[i]
 
             # 4维分块变回2维
-            self.ca_part[channel] = np.concatenate(np.concatenate(self.ca_block[channel], 1), 1)
+            self.ca_part[channel] = np.concatenate(
+                np.concatenate(self.ca_block[channel], 1), 1)
             # 4维分块时右边和下边不能整除的长条保留，其余是主体部分，换成 embed 之后的频域的数据
-            embed_ca[channel][:self.part_shape[0], :self.part_shape[1]] = self.ca_part[channel]
+            embed_ca[channel][:self.part_shape[0], :self.
+                              part_shape[1]] = self.ca_part[channel]
             # 逆变换回去
-            embed_YUV[channel] = idwt2((embed_ca[channel], self.hvd[channel]), "haar")
+            embed_YUV[channel] = idwt2((embed_ca[channel], self.hvd[channel]),
+                                       "haar")
 
         # 合并3通道
         embed_img_YUV = np.stack(embed_YUV, axis=2)
@@ -146,10 +194,15 @@ class WaterMarkCore:
     def block_get_wm_slow(self, args):
         block, shuffler = args
         # dct->flatten->加密->逆flatten->svd->解水印
-        block_dct_shuffled = dct(block).flatten()[shuffler].reshape(self.block_shape)
+        # 对每一个图像块进行DCT变换
+        block_dct_shuffled = dct(block).flatten()[shuffler].reshape(
+            self.block_shape)
 
+        # 对每一个图像块进行SVD变换
         u, s, v = svd(block_dct_shuffled)
+        # 从SVD变换后的矩阵中提取水印，检查s矩阵的第一列是否大于d1/2,如果大于则水印比特为1,否则为0。
         wm = (s[0] % self.d1 > self.d1 / 2) * 1
+        # 如果d2不为0,则检查s矩阵的第二列是否大于d2/2,如果大于则水印比特为1,否则为0。
         if self.d2:
             tmp = (s[1] % self.d2 > self.d2 / 2) * 1
             wm = (wm * 3 + tmp * 1) / 4
@@ -168,16 +221,20 @@ class WaterMarkCore:
         self.read_img_arr(img=img)
         self.init_block_index()
 
-        wm_block_bit = np.zeros(shape=(3, self.block_num))  # 3个channel，length 个分块提取的水印，全都记录下来
+        wm_block_bit = np.zeros(
+            shape=(3, self.block_num))  # 3个channel，length 个分块提取的水印，全都记录下来
 
-        self.idx_shuffle = random_strategy1(seed=self.password_img,
-                                            size=self.block_num,
-                                            block_shape=self.block_shape[0] * self.block_shape[1],  # 16
-                                            )
+        # 基于 password_img 作为随机数种子对分块进行乱序
+        self.idx_shuffle = random_strategy1(
+            seed=self.password_img,
+            size=self.block_num,
+            block_shape=self.block_shape[0] * self.block_shape[1],  # 16
+        )
         for channel in range(3):
-            wm_block_bit[channel, :] = self.pool.map(self.block_get_wm,
-                                                     [(self.ca_block[channel][self.block_index[i]], self.idx_shuffle[i])
-                                                      for i in range(self.block_num)])
+            wm_block_bit[channel, :] = self.pool.map(
+                self.block_get_wm,
+                [(self.ca_block[channel][self.block_index[i]],
+                  self.idx_shuffle[i]) for i in range(self.block_num)])
         return wm_block_bit
 
     def extract_avg(self, wm_block_bit):
@@ -204,12 +261,13 @@ class WaterMarkCore:
 
 def one_dim_kmeans(inputs):
     threshold = 0
-    e_tol = 10 ** (-6)
+    e_tol = 10**(-6)
     center = [inputs.min(), inputs.max()]  # 1. 初始化中心点
     for i in range(300):
         threshold = (center[0] + center[1]) / 2
         is_class01 = inputs > threshold  # 2. 检查所有点与这k个点之间的距离，每个点归类到最近的中心
-        center = [inputs[~is_class01].mean(), inputs[is_class01].mean()]  # 3. 重新找中心点
+        center = [inputs[~is_class01].mean(),
+                  inputs[is_class01].mean()]  # 3. 重新找中心点
         if np.abs((center[0] + center[1]) / 2 - threshold) < e_tol:  # 4. 停止条件
             threshold = (center[0] + center[1]) / 2
             break
