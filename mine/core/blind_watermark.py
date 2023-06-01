@@ -28,7 +28,8 @@ class WaterMark:
     def read_img(self, filename=None, img=None):
         # 如果没有传入图像，则使用opencv读取图像
         if img is None:
-            img = cv2.imread(filename, flags=cv2.IMREAD_UNCHANGED)
+            # img = cv2.imread(filename, flags=cv2.IMREAD_UNCHANGED)
+            img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             # cv2.IMREAD_UNCHANGED表示不进行颜色空间转换，否则图像将变为BGR空间，非RGB
             assert img is not None, "文件读取失败，请检查文件路径"
 
@@ -78,7 +79,8 @@ class WaterMark:
         if filename is not None:
             # 如果不设置图像压缩，则直接输出图像
             if compression_ratio is None:
-                cv2.imwrite(filename=filename, img=embed_img)
+                # cv2.imwrite(filename=filename, img=embed_img)
+                cv2.imencode('.png', embed_img)[1].tofile(filename)
             # 如果设置了图像压缩，则按照图像类型进行压缩
             elif filename.endswith('.jpg'):
                 cv2.imwrite(
