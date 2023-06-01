@@ -79,7 +79,8 @@ class WaterMark:
         if filename is not None:
             # 如果不设置图像压缩，则直接输出图像
             if compression_ratio is None:
-                cv2.imwrite(filename=filename, img=embed_img)
+                # cv2.imwrite(filename=filename, img=embed_img)
+                cv2.imencode('.png', embed_img)[1].tofile(filename)
             # 如果设置了图像压缩，则按照图像类型进行压缩
             elif filename.endswith('.jpg'):
                 cv2.imwrite(
@@ -113,7 +114,9 @@ class WaterMark:
         assert wm_shape is not None, 'wm_shape needed'
 
         if filename is not None:
-            embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
+            # embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
+            # embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
+            embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             assert embed_img is not None, "{filename} not read".format(
                 filename=filename)
 

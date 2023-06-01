@@ -945,7 +945,7 @@ QPushButton:pressed {
 border:none;</string>
                     </property>
                     <property name="placeholderText">
-                     <string>输入嵌入的字符串</string>
+                     <string>输入嵌入的字符串/水印的长度</string>
                     </property>
                    </widget>
                    <widget class="QPushButton" name="pushButton">
@@ -965,6 +965,37 @@ padding:8px;</string>
                     </property>
                     <property name="text">
                      <string/>
+                    </property>
+                   </widget>
+                   <widget class="QWidget" name="widget_3" native="true">
+                    <property name="geometry">
+                     <rect>
+                      <x>510</x>
+                      <y>20</y>
+                      <width>24</width>
+                      <height>24</height>
+                     </rect>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="sizeIncrement">
+                     <size>
+                      <width>32</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">image: url(:/buttom/img/buttom/放大_zoom-in.svg);</string>
                     </property>
                    </widget>
                   </widget>
@@ -1040,56 +1071,6 @@ border-radius:28px</string>
                     </rect>
                    </property>
                   </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_3" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>550</x>
-                    <y>610</y>
-                    <width>24</width>
-                    <height>24</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="sizeIncrement">
-                   <size>
-                    <width>32</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">image: url(:/buttom/img/buttom/放大_zoom-in.svg);</string>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="label_2">
-                  <property name="geometry">
-                   <rect>
-                    <x>170</x>
-                    <y>430</y>
-                    <width>91</width>
-                    <height>51</height>
-                   </rect>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Microsoft YaHei</family>
-                    <pointsize>17</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>原图像</string>
-                  </property>
                  </widget>
                  <widget class="QLabel" name="label_3">
                   <property name="geometry">
