@@ -1,9 +1,8 @@
-from blind_watermark import WaterMark
-import blind_watermark
+from core.blind_watermark import WaterMark
+import core.blind_watermark as blind_watermark
 import os
 
 os.chdir(os.path.dirname(__file__))
-blind_watermark.bw_notes.close()
 
 bwm1 = WaterMark(password_wm=1, password_img=1)
 # read original image

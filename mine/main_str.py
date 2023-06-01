@@ -1,6 +1,6 @@
 # 导入库函数
-from blind_watermark import WaterMark
-import blind_watermark
+from core.blind_watermark import WaterMark
+import core.blind_watermark
 import os
 
 # 更改工作目录到当前文件夹
