@@ -71,6 +71,8 @@ if __name__ == "__main__":
 
     # 定义打开文件的函数
     def open_file():
+        myWin.widget_3.hide()
+        myWin.pushButton.show()
         global file_name
         file_name = QtWidgets.QFileDialog.getOpenFileName(
             myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
