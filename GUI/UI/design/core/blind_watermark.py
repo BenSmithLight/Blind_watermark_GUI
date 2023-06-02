@@ -42,7 +42,8 @@ class WaterMark:
 
         if mode == 'img':
             # wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
-            wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), -1)
+            wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), 0)
+
             assert wm is not None, 'file "{filename}" not read'.format(
                 filename=wm_content)
 

@@ -70,7 +70,7 @@ if __name__ == "__main__":
             myWin.page_window.setCurrentIndex(3)
 
     # 定义打开文件的函数
-    def open_file():
+    def open_file(view):
         myWin.widget_3.hide()
         myWin.pushButton.show()
         global file_name
@@ -84,10 +84,13 @@ if __name__ == "__main__":
         # 添加图片
         scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(file_name[0])))
         # 设置scene
-        myWin.graphicsView.setScene(scene)
+        # myWin.graphicsView.setScene(scene)
+        view.setScene(scene)
         # 缩放大图
-        myWin.graphicsView.fitInView(scene.itemsBoundingRect(),
-                                     QtCore.Qt.KeepAspectRatio)
+        # myWin.graphicsView.fitInView(scene.itemsBoundingRect(),
+        #                              QtCore.Qt.KeepAspectRatio)
+
+        view.fitInView(scene.itemsBoundingRect(), QtCore.Qt.KeepAspectRatio)
 
     # 定义开始嵌入的函数
     def start_add():
@@ -162,17 +165,21 @@ if __name__ == "__main__":
         myWin.pushButton.hide()
         myWin.widget_3.show()
 
-
     # 获取列表
     list = myWin.findChild(QListWidget, "listWidget")
     list.itemClicked.connect(list_btn_function)
 
     # 添加选择文件的按钮
-    myWin.pushButton_3.clicked.connect(open_file)
+    myWin.pushButton_3.clicked.connect(open_file(
+        myWin.graphicsView))  # 字符串文件选择
+    myWin.pushButton_11.clicked.connect(open_file(
+        myWin.graphicsView_4))  # 图片文件选择
 
     # 设置label隐藏
     myWin.label_3.hide()
     myWin.widget_3.hide()
+    myWin.label_4.hide()
+    myWin.widget_4.hide()
 
     # 固定视口大小
     myWin.graphicsView.setFixedSize(370, 370)
