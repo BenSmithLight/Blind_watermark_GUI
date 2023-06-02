@@ -28,8 +28,8 @@ class WaterMark:
     def read_img(self, filename=None, img=None):
         # 如果没有传入图像，则使用opencv读取图像
         if img is None:
-            img = cv2.imread(filename, flags=cv2.IMREAD_UNCHANGED)
-            # img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
+            # img = cv2.imread(filename, flags=cv2.IMREAD_UNCHANGED)
+            img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             # cv2.IMREAD_UNCHANGED表示不进行颜色空间转换，否则图像将变为BGR空间，非RGB
             assert img is not None, "文件读取失败，请检查文件路径"
 
@@ -41,8 +41,9 @@ class WaterMark:
         assert mode in ('img', 'str', 'bit'), "输入模式错误，应该为img/str/bit"
 
         if mode == 'img':
-            wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
-            # wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), -1)
+            # wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
+            wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), 0)
+
             assert wm is not None, 'file "{filename}" not read'.format(
                 filename=wm_content)
 
@@ -80,8 +81,8 @@ class WaterMark:
         if filename is not None:
             # 如果不设置图像压缩，则直接输出图像
             if compression_ratio is None:
-                cv2.imwrite(filename=filename, img=embed_img)
-                # cv2.imencode('.png', embed_img)[1].tofile(filename)
+                # cv2.imwrite(filename=filename, img=embed_img)
+                cv2.imencode('.png', embed_img)[1].tofile(filename)
             # 如果设置了图像压缩，则按照图像类型进行压缩
             elif filename.endswith('.jpg'):
                 cv2.imwrite(
@@ -116,8 +117,8 @@ class WaterMark:
         assert wm_shape is not None, 'wm_shape needed'
 
         if filename is not None:
-            embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
-            # embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
+            # embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
+            embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             assert embed_img is not None, "{filename} not read".format(
                 filename=filename)
 
@@ -135,8 +136,8 @@ class WaterMark:
         # 转化为指定格式：
         if mode == 'img':
             wm = 255 * wm.reshape(wm_shape[0], wm_shape[1])
-            cv2.imwrite(out_wm_name, wm)
-            # cv2.imencode('.png', wm)[1].tofile(out_wm_name)
+            # cv2.imwrite(out_wm_name, wm)
+            cv2.imencode('.png', wm)[1].tofile(out_wm_name)
         elif mode == 'str':
             byte = ''.join(str((i >= 0.5) * 1) for i in wm)
             wm = bytes.fromhex(hex(int(byte,
