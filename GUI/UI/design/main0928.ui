@@ -648,6 +648,11 @@ border-radius:30px
                       <height>32</height>
                      </size>
                     </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>14</pointsize>
+                     </font>
+                    </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{
 	margin-right:3px;
@@ -683,6 +688,11 @@ QPushButton:pressed {
                       <width>100</width>
                       <height>32</height>
                      </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>14</pointsize>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">QPushButton{

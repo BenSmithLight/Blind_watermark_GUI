@@ -41,7 +41,8 @@ class WaterMark:
         assert mode in ('img', 'str', 'bit'), "输入模式错误，应该为img/str/bit"
 
         if mode == 'img':
-            wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
+            # wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
+            wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), -1)
             assert wm is not None, 'file "{filename}" not read'.format(
                 filename=wm_content)
 
@@ -115,7 +116,6 @@ class WaterMark:
 
         if filename is not None:
             # embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
-            # embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             assert embed_img is not None, "{filename} not read".format(
                 filename=filename)

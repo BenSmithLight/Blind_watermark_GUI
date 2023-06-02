@@ -41,7 +41,8 @@ class WaterMark:
         assert mode in ('img', 'str', 'bit'), "输入模式错误，应该为img/str/bit"
 
         if mode == 'img':
-            wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
+            # wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
+            wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), -1)
             assert wm is not None, 'file "{filename}" not read'.format(
                 filename=wm_content)
 
@@ -94,7 +95,8 @@ class WaterMark:
                     params=[cv2.IMWRITE_PNG_COMPRESSION, compression_ratio])
             # 如果是其他类型的图像，则直接输出
             else:
-                cv2.imwrite(filename=filename, img=embed_img)
+                # cv2.imwrite(filename=filename, img=embed_img)
+                cv2.imencode('.png', embed_img)[1].tofile(filename)
         return embed_img
 
     def extract_decrypt(self, wm_avg):
@@ -114,7 +116,8 @@ class WaterMark:
         assert wm_shape is not None, 'wm_shape needed'
 
         if filename is not None:
-            embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
+            # embed_img = cv2.imread(filename, flags=cv2.IMREAD_COLOR)
+            embed_img = cv2.imdecode(np.fromfile(filename, dtype=np.uint8), -1)
             assert embed_img is not None, "{filename} not read".format(
                 filename=filename)
 
