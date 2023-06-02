@@ -148,6 +148,8 @@ if __name__ == "__main__":
 
     # 定义开始嵌入的函数
     def start_add(mod=None):
+        myWin.label_8.show()
+        QApplication.processEvents()  # 强制更新UI
         global wm_shape  # 水印图片的大小
         # 向图像添加水印
         bwm = WaterMark(password_img=password_img, password_wm=password_wm)
@@ -268,9 +270,12 @@ if __name__ == "__main__":
             myWin.graphicsView_5.fitInView(scene.itemsBoundingRect(),
                                            QtCore.Qt.KeepAspectRatio)
             myWin.label_7.show()
+        myWin.label_8.hide()
 
     # 定义水印解析的函数
     def read_wm(mod=None):
+        myWin.label_8.show()
+        QApplication.processEvents()  # 强制更新UI
         # 检查文件输入，否则弹窗提醒
         try:
             if file_name[0] == '':
@@ -356,6 +361,7 @@ if __name__ == "__main__":
                 ['1' if i == True else '0' for i in wm_extract])
             myWin.lineEdit_4.setText("水印内容为： {}".format(wm_extract))
             myWin.label_7.hide()
+        myWin.label_8.hide()
 
     # 获取列表
     list = myWin.findChild(QListWidget, "listWidget")
@@ -375,6 +381,7 @@ if __name__ == "__main__":
     myWin.label_4.hide()
     myWin.label_5.hide()
     myWin.label_7.hide()
+    myWin.label_8.hide()
 
     # 固定视口大小
     # myWin.graphicsView.setFixedSize(370, 370)
@@ -389,6 +396,7 @@ if __name__ == "__main__":
     myWin.lineEdit_7.setStyleSheet("color: rgb(0, 0, 0);")
     myWin.lineEdit_4.setStyleSheet("color: rgb(0, 0, 0);")
     myWin.lineEdit_6.setStyleSheet("color: rgb(0, 0, 0);")
+    myWin.label_8.setStyleSheet("color: rgb(255, 255, 255);")
 
     # 添加水印解析按钮
     myWin.pushButton_2.clicked.connect(partial(read_wm, 'str'))

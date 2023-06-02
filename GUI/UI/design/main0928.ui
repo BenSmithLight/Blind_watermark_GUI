@@ -334,6 +334,22 @@ border-radius:30px
                </property>
               </spacer>
              </item>
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="font">
+                <font>
+                 <family>Microsoft YaHei</family>
+                 <pointsize>17</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>运行中...</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>

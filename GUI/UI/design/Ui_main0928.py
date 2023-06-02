@@ -129,6 +129,14 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.frame_5)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
+        self.label_8 = QtWidgets.QLabel(self.frame_4)
+        font = QtGui.QFont()
+        font.setFamily("Microsoft YaHei")
+        font.setPointSize(17)
+        self.label_8.setFont(font)
+        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_8.setObjectName("label_8")
+        self.verticalLayout.addWidget(self.label_8)
         self.verticalLayout_2.addWidget(self.frame_4)
         self.listWidget = QtWidgets.QListWidget(self.frame_3)
         self.listWidget.setStyleSheet("QListView {\n"
@@ -994,6 +1002,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_6.setText(_translate("MainWindow", "Liu Guang"))
+        self.label_8.setText(_translate("MainWindow", "运行中..."))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         item = self.listWidget.item(0)
