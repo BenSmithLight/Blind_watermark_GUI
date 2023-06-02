@@ -24,6 +24,6 @@ len_wm = len(bwm.wm_bit)
 print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
 
 # 从图像中提取水印
-bwm = WaterMark(password_img=1, password_wm=1)
+bwm = WaterMark(password_img=10, password_wm=1)
 wm_extract = bwm.extract('D:/Learn/大学课程/数字图像处理/课程设计/Source/Pictures/teststr.png', wm_shape=len_wm, mode='str')
 print(wm_extract)

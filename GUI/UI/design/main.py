@@ -56,6 +56,22 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     myWin = MyMainForm()
 
+    # 获取水印密码和解析密码
+    password_img = 1
+    password_wm = 1
+
+    # 定义更改密码的函数
+    def password_change():
+        global password_img  # 图片密码
+        global password_wm  # 水印密码
+        # 获取水印密码和解析密码
+        if (myWin.lineEdit_6.text() != ''):
+            try:
+                password_wm = int(myWin.lineEdit_6.text())
+            except:
+                pass
+
+    
     # 定义切换页面的函数
     def list_btn_function():
         item = myWin.listWidget.currentItem()
@@ -134,7 +150,7 @@ if __name__ == "__main__":
     def start_add(mod=None):
         global wm_shape  # 水印图片的大小
         # 向图像添加水印
-        bwm = WaterMark(password_img=1, password_wm=1)
+        bwm = WaterMark(password_img=password_img, password_wm=password_wm)
 
         # 检查文件输入，否则弹窗提醒
         try:
@@ -144,7 +160,6 @@ if __name__ == "__main__":
         except:
             QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
             return
-            
 
         # 参数检查部分
         if mod is None:
@@ -283,7 +298,7 @@ if __name__ == "__main__":
                 QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
 
             len_wm = int(myWin.lineEdit_3.text())
-            bwm = WaterMark(password_img=1, password_wm=1)
+            bwm = WaterMark(password_img=password_img, password_wm=password_wm)
             wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='str')
             # print(wm_extract)
             myWin.lineEdit_3.setText("水印内容为： {}".format(wm_extract))
@@ -300,7 +315,7 @@ if __name__ == "__main__":
                 return
             # 定义解析出的水印输出的位置
             out_wm = file_name[0][:-4] + '_extracted_mark' + file_name[0][-4:]
-            bwm = WaterMark(password_img=1, password_wm=1)
+            bwm = WaterMark(password_img=password_img, password_wm=password_wm)
             wm_extract = bwm.extract(file_name[0],
                                      wm_shape=wm_shape,
                                      out_wm_name=out_wm,
@@ -334,10 +349,11 @@ if __name__ == "__main__":
                 QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
 
             len_wm = int(myWin.lineEdit_4.text())
-            bwm = WaterMark(password_img=1, password_wm=1)
+            bwm = WaterMark(password_img=password_img, password_wm=password_wm)
             wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='bit')
             # 输出结果转换为10101等字符串
-            wm_extract = ''.join(['1' if i == True else '0' for i in wm_extract])
+            wm_extract = ''.join(
+                ['1' if i == True else '0' for i in wm_extract])
             myWin.lineEdit_4.setText("水印内容为： {}".format(wm_extract))
             myWin.label_7.hide()
 
@@ -350,6 +366,9 @@ if __name__ == "__main__":
     myWin.pushButton_11.clicked.connect(partial(open_file, 2))  # 图片文件选择
     myWin.pushButton_12.clicked.connect(partial(open_file, 3))  # 水印文件选择
     myWin.pushButton_6.clicked.connect(partial(open_file, 4))  # 水印文件选择
+
+    # 添加水印密码和解析密码的确认按钮
+    myWin.pushButton_16.clicked.connect(password_change)
 
     # 设置label隐藏
     myWin.label_3.hide()
@@ -369,6 +388,7 @@ if __name__ == "__main__":
     myWin.lineEdit_3.setStyleSheet("color: rgb(0, 0, 0);")
     myWin.lineEdit_7.setStyleSheet("color: rgb(0, 0, 0);")
     myWin.lineEdit_4.setStyleSheet("color: rgb(0, 0, 0);")
+    myWin.lineEdit_6.setStyleSheet("color: rgb(0, 0, 0);")
 
     # 添加水印解析按钮
     myWin.pushButton_2.clicked.connect(partial(read_wm, 'str'))

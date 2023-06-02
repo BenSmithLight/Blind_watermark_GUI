@@ -147,9 +147,12 @@ class WaterMark:
             # cv2.imwrite(out_wm_name, wm)
             cv2.imencode('.png', wm)[1].tofile(out_wm_name)
         elif mode == 'str':
-            byte = ''.join(str((i >= 0.5) * 1) for i in wm)
-            wm = bytes.fromhex(hex(int(byte,
-                                       base=2))[2:]).decode('utf-8',
-                                                            errors='replace')
+            try:
+                byte = ''.join(str((i >= 0.5) * 1) for i in wm)
+                wm = bytes.fromhex(hex(int(byte,
+                                        base=2))[2:]).decode('utf-8',
+                                                                errors='replace')
+            except:
+                wm = '解析错误，请检查密码和水印长度是否正确'
 
         return wm

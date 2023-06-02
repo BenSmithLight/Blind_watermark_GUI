@@ -305,6 +305,7 @@ border-radius:30px
                   <property name="font">
                    <font>
                     <family>Microsoft YaHei</family>
+                    <pointsize>20</pointsize>
                     <weight>75</weight>
                     <bold>true</bold>
                    </font>
@@ -544,7 +545,7 @@ QPushButton:pressed {
           <item>
            <widget class="QStackedWidget" name="page_window">
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="Page1">
              <layout class="QHBoxLayout" name="horizontalLayout_32" stretch="0">
@@ -2148,292 +2149,336 @@ border-radius:28px</string>
              </layout>
             </widget>
             <widget class="QWidget" name="Page4">
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QScrollArea" name="scrollArea_4">
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Sunken</enum>
-                </property>
-                <property name="verticalScrollBarPolicy">
-                 <enum>Qt::ScrollBarAlwaysOff</enum>
-                </property>
-                <property name="horizontalScrollBarPolicy">
-                 <enum>Qt::ScrollBarAlwaysOff</enum>
-                </property>
-                <property name="sizeAdjustPolicy">
-                 <enum>QAbstractScrollArea::AdjustToContents</enum>
-                </property>
-                <property name="widgetResizable">
-                 <bool>true</bool>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignJustify|Qt::AlignTop</set>
-                </property>
-                <widget class="QWidget" name="scrollAreaWidgetContents_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>871</width>
-                   <height>765</height>
-                  </rect>
-                 </property>
-                 <widget class="QWidget" name="widget_48" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>20</x>
-                    <y>650</y>
-                    <width>841</width>
-                    <height>71</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>361</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>176666</width>
-                    <height>17666</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
+             <widget class="QLabel" name="label_9">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>80</y>
+                <width>161</width>
+                <height>51</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>Microsoft YaHei</family>
+                <pointsize>17</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>水印密码</string>
+              </property>
+             </widget>
+             <widget class="QWidget" name="widget_31" native="true">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>140</y>
+                <width>841</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>361</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>176666</width>
+                <height>17666</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);
 border-radius:28px</string>
-                  </property>
-                  <widget class="QFrame" name="frame_21">
-                   <property name="geometry">
-                    <rect>
-                     <x>610</x>
-                     <y>10</y>
-                     <width>221</width>
-                     <height>51</height>
-                    </rect>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">QFrame{
+              </property>
+              <widget class="QFrame" name="frame_15">
+               <property name="geometry">
+                <rect>
+                 <x>720</x>
+                 <y>10</y>
+                 <width>101</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QFrame{
 	background-color: rgb(255, 255, 255);
 border:0px solid red;
 border-radius:30px
 }</string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <widget class="QPushButton" name="pushButton_15">
-                    <property name="geometry">
-                     <rect>
-                      <x>0</x>
-                      <y>10</y>
-                      <width>100</width>
-                      <height>32</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>100</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	margin-right:3px;
- 
-	color: rgba(0, 0, 0, 166);
-	background-color: rgb(255, 255, 255);
-	border:1px outset rgb(212, 215, 220);
-border-radius:12px;
-}
-QPushButton:hover {
-
-}
-QPushButton:pressed {
-
-}
-</string>
-                    </property>
-                    <property name="text">
-                     <string>button1</string>
-                    </property>
-                   </widget>
-                   <widget class="QPushButton" name="pushButton_16">
-                    <property name="geometry">
-                     <rect>
-                      <x>120</x>
-                      <y>10</y>
-                      <width>100</width>
-                      <height>32</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>100</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">QPushButton{
-	margin-right:3px;
- 
-	color: rgba(0, 0, 0, 166);
-	background-color: rgb(255, 255, 255);
-	border:1px outset rgb(212, 215, 220);
-	border-radius:12px;
-}
-QPushButton:hover {
-
-}
-QPushButton:pressed {
-
-}
-</string>
-                    </property>
-                    <property name="text">
-                     <string>make offer</string>
-                    </property>
-                   </widget>
-                  </widget>
-                  <widget class="QFrame" name="frame_22">
-                   <property name="geometry">
-                    <rect>
-                     <x>10</x>
-                     <y>10</y>
-                     <width>551</width>
-                     <height>51</height>
-                    </rect>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <widget class="QLineEdit" name="lineEdit_9">
-                    <property name="geometry">
-                     <rect>
-                      <x>22</x>
-                      <y>9</y>
-                      <width>461</width>
-                      <height>32</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>0</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">color: rgba(0, 0, 0, 35);
-border:none;</string>
-                    </property>
-                    <property name="placeholderText">
-                     <string>输入嵌入的字符串</string>
-                    </property>
-                   </widget>
-                   <widget class="QWidget" name="widget_49" native="true">
-                    <property name="geometry">
-                     <rect>
-                      <x>510</x>
-                      <y>10</y>
-                      <width>32</width>
-                      <height>32</height>
-                     </rect>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="sizeIncrement">
-                     <size>
-                      <width>0</width>
-                      <height>2</height>
-                     </size>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QPushButton" name="pushButton_16">
+                <property name="geometry">
+                 <rect>
+                  <x>50</x>
+                  <y>10</y>
+                  <width>41</width>
+                  <height>41</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));
 image: url(:/buttom_white/img/buttom_white/发送_send.svg);
 border-radius:16px;
 padding:8px;</string>
-                    </property>
-                   </widget>
-                  </widget>
-                 </widget>
-                 <widget class="QWidget" name="widget_50" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>480</x>
-                    <y>30</y>
-                    <width>400</width>
-                    <height>400</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>361</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>176666</width>
-                    <height>17666</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:28px</string>
-                  </property>
-                 </widget>
-                 <widget class="QWidget" name="widget_51" native="true">
-                  <property name="geometry">
-                   <rect>
-                    <x>20</x>
-                    <y>30</y>
-                    <width>400</width>
-                    <height>400</height>
-                   </rect>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>361</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>176666</width>
-                    <height>17666</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
-border-radius:28px</string>
-                  </property>
-                 </widget>
-                </widget>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
                </widget>
-              </item>
-             </layout>
+              </widget>
+              <widget class="QFrame" name="frame_16">
+               <property name="geometry">
+                <rect>
+                 <x>10</x>
+                 <y>10</y>
+                 <width>551</width>
+                 <height>51</height>
+                </rect>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QLineEdit" name="lineEdit_6">
+                <property name="geometry">
+                 <rect>
+                  <x>20</x>
+                  <y>10</y>
+                  <width>681</width>
+                  <height>32</height>
+                 </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>32</height>
+                 </size>
+                </property>
+                <property name="palette">
+                 <palette>
+                  <active>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </active>
+                  <inactive>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </inactive>
+                  <disabled>
+                   <colorrole role="WindowText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Text">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="ButtonText">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="35">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="PlaceholderText">
+                    <brush brushstyle="NoBrush">
+                     <color alpha="128">
+                      <red>0</red>
+                      <green>0</green>
+                      <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                  </disabled>
+                 </palette>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgba(0, 0, 0, 35);
+border:none;</string>
+                </property>
+                <property name="placeholderText">
+                 <string>1</string>
+                </property>
+               </widget>
+              </widget>
+             </widget>
             </widget>
            </widget>
           </item>
