@@ -95,7 +95,8 @@ class WaterMark:
                     params=[cv2.IMWRITE_PNG_COMPRESSION, compression_ratio])
             # 如果是其他类型的图像，则直接输出
             else:
-                cv2.imwrite(filename=filename, img=embed_img)
+                # cv2.imwrite(filename=filename, img=embed_img)
+                cv2.imencode('.png', embed_img)[1].tofile(filename)
         return embed_img
 
     def extract_decrypt(self, wm_avg):
@@ -134,7 +135,8 @@ class WaterMark:
         # 转化为指定格式：
         if mode == 'img':
             wm = 255 * wm.reshape(wm_shape[0], wm_shape[1])
-            cv2.imwrite(out_wm_name, wm)
+            # cv2.imwrite(out_wm_name, wm)
+            cv2.imencode('.png', wm)[1].tofile(out_wm_name)
         elif mode == 'str':
             byte = ''.join(str((i >= 0.5) * 1) for i in wm)
             wm = bytes.fromhex(hex(int(byte,
