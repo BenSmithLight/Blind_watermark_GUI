@@ -16,6 +16,6 @@ print('Done!')
 
 bwm1 = WaterMark(password_wm=1, password_img=1)
 # notice that wm_shape is necessary
-bwm1.extract(filename='D:/Learn/大学课程/数字图像处理/课程设计/Source/Pictures/test_with_img_mark.jpg', wm_shape=(50, 50), out_wm_name='D:/Learn/大学课程/数字图像处理/课程设计/Source/Pictures/test_with_img_mark_result.jpg', )
+bwm1.extract(filename='D:/Learn/大学课程/数字图像处理/课程设计/Source/Pictures/test_with_img_mark.jpg', wm_shape=(50, 50), out_wm_name='D:/Learn/大学课程/数字图像处理/课程设计/Source/Pictures/test_with_img_mark_result.jpg')
 
 print('Done!')

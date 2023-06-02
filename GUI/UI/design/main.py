@@ -3,6 +3,7 @@ from core.blind_watermark import WaterMark
 import core.blind_watermark
 import os
 import sys
+from functools import partial
 
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import Qt
@@ -70,128 +71,309 @@ if __name__ == "__main__":
             myWin.page_window.setCurrentIndex(3)
 
     # 定义打开文件的函数
-    def open_file(view):
-        myWin.widget_3.hide()
-        myWin.pushButton.show()
-        global file_name
-        file_name = QtWidgets.QFileDialog.getOpenFileName(
-            myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
-        print(file_name[0])
+    def open_file(view=None):
+        global file_name  # 待处理的图片
+        global wm_img  # 水印图片
 
-        # 预览图片
-        # 创建scene
-        scene = QGraphicsScene()
-        # 添加图片
-        scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(file_name[0])))
-        # 设置scene
-        # myWin.graphicsView.setScene(scene)
-        view.setScene(scene)
-        # 缩放大图
-        # myWin.graphicsView.fitInView(scene.itemsBoundingRect(),
-        #                              QtCore.Qt.KeepAspectRatio)
-
-        view.fitInView(scene.itemsBoundingRect(), QtCore.Qt.KeepAspectRatio)
+        if (view == None):
+            return
+        elif (view == 1):
+            file_name = QtWidgets.QFileDialog.getOpenFileName(
+                myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
+            # 预览图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(file_name[0])))
+            # 设置scene
+            myWin.graphicsView.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView.fitInView(scene.itemsBoundingRect(),
+                                         QtCore.Qt.KeepAspectRatio)
+        elif (view == 2):
+            file_name = QtWidgets.QFileDialog.getOpenFileName(
+                myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
+            # 预览图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(file_name[0])))
+            # 设置scene
+            myWin.graphicsView_4.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_4.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
+        elif (view == 3):
+            wm_img = QtWidgets.QFileDialog.getOpenFileName(
+                myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
+            # 预览图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(wm_img[0])))
+            # 设置scene
+            myWin.graphicsView_7.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_7.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
+        elif (view == 4):
+            file_name = QtWidgets.QFileDialog.getOpenFileName(
+                myWin, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
+            # 预览图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(file_name[0])))
+            # 设置scene
+            myWin.graphicsView_6.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_6.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
 
     # 定义开始嵌入的函数
-    def start_add():
-        # 检查输入，否则弹窗提醒
-        if myWin.lineEdit_3.text() == '':
-            QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印内容')
-            return
-        # 检查文件输入，否则弹窗提醒
-        if file_name[0] == '':
-            QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
-            return
-        # 获取嵌入的字符串
-        str = myWin.lineEdit_3.text()
-
+    def start_add(mod=None):
+        global wm_shape  # 水印图片的大小
         # 向图像添加水印
         bwm = WaterMark(password_img=1, password_wm=1)
-        # 读取载体图像
-        bwm.read_img(file_name[0])
-        # 设置水印内容
-        wm = str
-        # 读取水印
-        bwm.read_wm(wm, mode='str')
-        # 输出叠加水印的图片
-        bwm.embed(file_name[0][:-4] + '_with_str_mark' + file_name[0][-4:])
-        output_file = file_name[0][:-4] + '_with_str_mark' + file_name[0][-4:]
-        # bwm.embed('../Pictures/test_with_str_mark.png')
-        # 获取水印长度
-        len_wm = len(bwm.wm_bit)
-        print('Put down the length of wm_bit {len_wm}'.format(len_wm=len_wm))
-        # 输出水印长度
-        myWin.lineEdit_3.setText('水印长度为： {len_wm}'.format(len_wm=len_wm))
-
-        # 显示嵌入后的图片
-        # 创建scene
-        scene = QGraphicsScene()
-        # 添加图片
-        scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
-        # 设置scene
-        myWin.graphicsView_2.setScene(scene)
-        # 缩放大图
-        myWin.graphicsView_2.fitInView(scene.itemsBoundingRect(),
-                                       QtCore.Qt.KeepAspectRatio)
-
-        myWin.label_3.show()
-
-    # 定义水印解析的函数
-    def read_wm():
-        # 检查输入，否则弹窗提醒
-        if myWin.lineEdit_3.text() == '':
-            QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印长度')
-            return
-        # 检查输入的是否整数，否则弹窗提醒
-        try:
-            int(myWin.lineEdit_3.text())
-        except:
-            QtWidgets.QMessageBox.warning(myWin, '警告', '请输入整数')
-            return
-        # 检查文件的名字中是否包含mark，否则弹窗提醒
-        if 'mark' not in file_name[0]:
-            QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
-            return
 
         # 检查文件输入，否则弹窗提醒
-        if file_name[0] == '':
+        try:
+            if file_name[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+                return
+        except:
             QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
             return
-        len_wm = int(myWin.lineEdit_3.text())
-        bwm = WaterMark(password_img=1, password_wm=1)
-        wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='str')
-        # print(wm_extract)
-        myWin.lineEdit_3.setText("水印内容为： {}".format(wm_extract))
-        myWin.pushButton.hide()
-        myWin.widget_3.show()
+            
+
+        # 参数检查部分
+        if mod is None:
+            return
+        elif mod == 'str':
+            # 检查输入，否则弹窗提醒
+            if myWin.lineEdit_3.text() == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印内容')
+                return
+            # 检查文件输入，否则弹窗提醒
+            if file_name[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+                return
+            # 获取嵌入的字符串
+            str = myWin.lineEdit_3.text()
+            wm = str
+            bwm.read_wm(wm_content=wm, mode='str')
+            # 获取水印长度
+            len_wm = len(bwm.wm_bit)
+            # 输出水印长度
+            myWin.lineEdit_3.setText('水印长度为： {len_wm}'.format(len_wm=len_wm))
+            # 处理图片
+            bwm.read_img(file_name[0])
+            # 输出叠加水印的图片
+            bwm.embed(file_name[0][:-4] + '_with_str_mark' + file_name[0][-4:])
+            output_file = file_name[0][:-4] + '_with_str_mark' + file_name[0][
+                -4:]
+
+            # 显示嵌入后的图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            # 设置scene
+            myWin.graphicsView_2.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_2.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
+            myWin.label_3.show()
+        elif mod == 'img':
+            # 检查文件输入，否则弹窗提醒
+            if file_name[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+                return
+            # 检查水印文件输入，否则弹窗提醒
+            if wm_img[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择水印文件')
+                return
+            # 获取嵌入的图片
+            wm = wm_img[0]
+            wm_shape = bwm.read_wm(wm_content=wm, mode='img')
+            # 输出水印大小
+            myWin.lineEdit_7.setText('解析得水印大小为： {}'.format(wm_shape))
+            # 处理图片
+            bwm.read_img(file_name[0])
+            # 输出叠加水印的图片
+            bwm.embed(file_name[0][:-4] + '_with_img_mark' + file_name[0][-4:])
+            output_file = file_name[0][:-4] + '_with_img_mark' + file_name[0][
+                -4:]
+            # 显示嵌入后的图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            # 设置scene
+            myWin.graphicsView_3.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_3.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
+            myWin.label_5.show()
+            myWin.label_4.hide()
+        elif mod == 'bit':
+            # 检查输入，否则弹窗提醒
+            if myWin.lineEdit_4.text() == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印内容')
+                return
+            # 检查文件输入，否则弹窗提醒
+            if file_name[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+                return
+            # 获取嵌入的字符串
+            bit_data = myWin.lineEdit_4.text()
+            # 将输入的10110等字符串转换为[True, False, True, True, True, False]等列表
+            bit_data = [True if i == '1' else False for i in bit_data]
+            wm = bit_data
+            bwm.read_wm(wm_content=wm, mode='bit')
+            # 获取水印长度
+            len_wm = len(bwm.wm_bit)
+            # 输出水印长度
+            myWin.lineEdit_4.setText('水印长度为： {len_wm}'.format(len_wm=len_wm))
+            # 处理图片
+            bwm.read_img(file_name[0])
+            # 输出叠加水印的图片
+            bwm.embed(file_name[0][:-4] + '_with_bit_mark' + file_name[0][-4:])
+            output_file = file_name[0][:-4] + '_with_bit_mark' + file_name[0][
+                -4:]
+
+            # 显示嵌入后的图片
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            # 设置scene
+            myWin.graphicsView_5.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_5.fitInView(scene.itemsBoundingRect(),
+                                           QtCore.Qt.KeepAspectRatio)
+            myWin.label_7.show()
+
+    # 定义水印解析的函数
+    def read_wm(mod=None):
+        # 检查文件输入，否则弹窗提醒
+        try:
+            if file_name[0] == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+                return
+        except:
+            QtWidgets.QMessageBox.warning(myWin, '警告', '请选择文件')
+            return
+
+        if mod is None:
+            return
+        elif mod == 'str':
+            # 检查输入，否则弹窗提醒
+            if myWin.lineEdit_3.text() == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印长度')
+                return
+            # 检查输入的是否整数，否则弹窗提醒
+            try:
+                int(myWin.lineEdit_3.text())
+            except:
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入整数')
+                return
+            # 检查文件的名字中是否包含mark，否则弹窗提醒
+            if 'mark' not in file_name[0]:
+                QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
+
+            len_wm = int(myWin.lineEdit_3.text())
+            bwm = WaterMark(password_img=1, password_wm=1)
+            wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='str')
+            # print(wm_extract)
+            myWin.lineEdit_3.setText("水印内容为： {}".format(wm_extract))
+        elif mod == 'img':
+            # 检查文件的名字中是否包含mark，否则弹窗提醒
+            if 'mark' not in file_name[0]:
+                QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
+            # 检查输入是否两个整数，否则弹窗提醒
+            try:
+                wm_shape = eval(myWin.lineEdit_7.text())
+            except:
+                QtWidgets.QMessageBox.warning(myWin, '警告',
+                                              '请按提示输入尺寸。例如：(50, 50)')
+                return
+            # 定义解析出的水印输出的位置
+            out_wm = file_name[0][:-4] + '_extracted_mark' + file_name[0][-4:]
+            bwm = WaterMark(password_img=1, password_wm=1)
+            wm_extract = bwm.extract(file_name[0],
+                                     wm_shape=wm_shape,
+                                     out_wm_name=out_wm,
+                                     mode='img')
+
+            # 显示解析出的水印
+            # 创建scene
+            scene = QGraphicsScene()
+            # 添加图片
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(out_wm)))
+            # 设置scene
+            myWin.graphicsView_12.setScene(scene)
+            # 缩放大图
+            myWin.graphicsView_12.fitInView(scene.itemsBoundingRect(),
+                                            QtCore.Qt.KeepAspectRatio)
+            myWin.label_5.hide()
+            myWin.label_4.show()
+        elif mod == 'bit':
+            # 检查输入，否则弹窗提醒
+            if myWin.lineEdit_4.text() == '':
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入水印长度')
+                return
+            # 检查输入的是否整数，否则弹窗提醒
+            try:
+                int(myWin.lineEdit_4.text())
+            except:
+                QtWidgets.QMessageBox.warning(myWin, '警告', '请输入整数')
+                return
+            # 检查文件的名字中是否包含mark，否则弹窗提醒
+            if 'mark' not in file_name[0]:
+                QtWidgets.QMessageBox.warning(myWin, '警告', '你可能选择了不带水印的图片')
+
+            len_wm = int(myWin.lineEdit_4.text())
+            bwm = WaterMark(password_img=1, password_wm=1)
+            wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='bit')
+            # 输出结果转换为10101等字符串
+            wm_extract = ''.join(['1' if i == True else '0' for i in wm_extract])
+            myWin.lineEdit_4.setText("水印内容为： {}".format(wm_extract))
+            myWin.label_7.hide()
 
     # 获取列表
     list = myWin.findChild(QListWidget, "listWidget")
     list.itemClicked.connect(list_btn_function)
 
     # 添加选择文件的按钮
-    myWin.pushButton_3.clicked.connect(open_file(
-        myWin.graphicsView))  # 字符串文件选择
-    myWin.pushButton_11.clicked.connect(open_file(
-        myWin.graphicsView_4))  # 图片文件选择
+    myWin.pushButton_3.clicked.connect(partial(open_file, 1))  # 字符串文件选择
+    myWin.pushButton_11.clicked.connect(partial(open_file, 2))  # 图片文件选择
+    myWin.pushButton_12.clicked.connect(partial(open_file, 3))  # 水印文件选择
+    myWin.pushButton_6.clicked.connect(partial(open_file, 4))  # 水印文件选择
 
     # 设置label隐藏
     myWin.label_3.hide()
-    myWin.widget_3.hide()
     myWin.label_4.hide()
-    myWin.widget_4.hide()
+    myWin.label_5.hide()
+    myWin.label_7.hide()
 
     # 固定视口大小
-    myWin.graphicsView.setFixedSize(370, 370)
+    # myWin.graphicsView.setFixedSize(370, 370)
 
     # 添加开始嵌入按钮
-    myWin.pushButton.clicked.connect(start_add)
+    myWin.pushButton.clicked.connect(partial(start_add, 'str'))
+    myWin.pushButton_17.clicked.connect(partial(start_add, 'img'))
+    myWin.pushButton_8.clicked.connect(partial(start_add, 'bit'))
 
     # 设置文本颜色
     myWin.lineEdit_3.setStyleSheet("color: rgb(0, 0, 0);")
+    myWin.lineEdit_7.setStyleSheet("color: rgb(0, 0, 0);")
+    myWin.lineEdit_4.setStyleSheet("color: rgb(0, 0, 0);")
 
     # 添加水印解析按钮
-    myWin.pushButton_2.clicked.connect(read_wm)
+    myWin.pushButton_2.clicked.connect(partial(read_wm, 'str'))
+    myWin.pushButton_4.clicked.connect(partial(read_wm, 'img'))
+    myWin.pushButton_7.clicked.connect(partial(read_wm, 'bit'))
 
     myWin.show()
     sys.exit(app.exec_())

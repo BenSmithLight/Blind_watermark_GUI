@@ -270,7 +270,7 @@ class Ui_MainWindow(object):
 "border-radius:28px")
         self.widget_23.setObjectName("widget_23")
         self.frame_8 = QtWidgets.QFrame(self.widget_23)
-        self.frame_8.setGeometry(QtCore.QRect(610, 10, 221, 51))
+        self.frame_8.setGeometry(QtCore.QRect(720, 10, 101, 51))
         self.frame_8.setStyleSheet("QFrame{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "border:0px solid red;\n"
@@ -301,35 +301,13 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_2 = QtWidgets.QPushButton(self.frame_8)
-        self.pushButton_2.setGeometry(QtCore.QRect(120, 10, 100, 32))
-        self.pushButton_2.setMinimumSize(QtCore.QSize(100, 32))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        self.pushButton_2.setFont(font)
-        self.pushButton_2.setStyleSheet("QPushButton{\n"
-"    margin-right:3px;\n"
-" \n"
-"    color: rgba(0, 0, 0, 166);\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    border:1px outset rgb(212, 215, 220);\n"
-"    border-radius:12px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"\n"
-"}\n"
-"QPushButton:pressed {\n"
-"\n"
-"}\n"
-"")
-        self.pushButton_2.setObjectName("pushButton_2")
         self.frame_12 = QtWidgets.QFrame(self.widget_23)
         self.frame_12.setGeometry(QtCore.QRect(10, 10, 551, 51))
         self.frame_12.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_12.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_12.setObjectName("frame_12")
         self.lineEdit_3 = QtWidgets.QLineEdit(self.frame_12)
-        self.lineEdit_3.setGeometry(QtCore.QRect(20, 10, 461, 32))
+        self.lineEdit_3.setGeometry(QtCore.QRect(20, 10, 681, 32))
         self.lineEdit_3.setMinimumSize(QtCore.QSize(0, 32))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
@@ -402,21 +380,22 @@ class Ui_MainWindow(object):
         self.lineEdit_3.setStyleSheet("color: rgba(0, 0, 0, 35);\n"
 "border:none;")
         self.lineEdit_3.setObjectName("lineEdit_3")
-        self.pushButton = QtWidgets.QPushButton(self.frame_12)
-        self.pushButton.setGeometry(QtCore.QRect(500, 10, 41, 41))
+        self.pushButton_2 = QtWidgets.QPushButton(self.widget_23)
+        self.pushButton_2.setGeometry(QtCore.QRect(660, 20, 41, 41))
+        self.pushButton_2.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(230,230,250));\n"
+"image: url(:/buttom/img/buttom/放大_zoom-in.svg);\n"
+"border-radius:16px;\n"
+"padding:8px;")
+        self.pushButton_2.setText("")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton = QtWidgets.QPushButton(self.widget_23)
+        self.pushButton.setGeometry(QtCore.QRect(610, 20, 41, 41))
         self.pushButton.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));\n"
 "image: url(:/buttom_white/img/buttom_white/发送_send.svg);\n"
 "border-radius:16px;\n"
 "padding:8px;")
         self.pushButton.setText("")
         self.pushButton.setObjectName("pushButton")
-        self.widget_3 = QtWidgets.QWidget(self.frame_12)
-        self.widget_3.setGeometry(QtCore.QRect(510, 20, 24, 24))
-        self.widget_3.setMinimumSize(QtCore.QSize(24, 24))
-        self.widget_3.setMaximumSize(QtCore.QSize(24, 24))
-        self.widget_3.setSizeIncrement(QtCore.QSize(32, 0))
-        self.widget_3.setStyleSheet("image: url(:/buttom/img/buttom/放大_zoom-in.svg);")
-        self.widget_3.setObjectName("widget_3")
         self.widget_24 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
         self.widget_24.setGeometry(QtCore.QRect(460, 30, 400, 400))
         self.widget_24.setMinimumSize(QtCore.QSize(361, 0))
@@ -616,20 +595,21 @@ class Ui_MainWindow(object):
 "border:none;")
         self.lineEdit_7.setObjectName("lineEdit_7")
         self.pushButton_17 = QtWidgets.QPushButton(self.frame_18)
-        self.pushButton_17.setGeometry(QtCore.QRect(490, 10, 41, 41))
+        self.pushButton_17.setGeometry(QtCore.QRect(440, 10, 41, 41))
         self.pushButton_17.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));\n"
 "image: url(:/buttom_white/img/buttom_white/发送_send.svg);\n"
 "border-radius:16px;\n"
 "padding:8px;")
         self.pushButton_17.setText("")
         self.pushButton_17.setObjectName("pushButton_17")
-        self.widget_4 = QtWidgets.QWidget(self.frame_18)
-        self.widget_4.setGeometry(QtCore.QRect(500, 20, 24, 24))
-        self.widget_4.setMinimumSize(QtCore.QSize(24, 24))
-        self.widget_4.setMaximumSize(QtCore.QSize(24, 24))
-        self.widget_4.setSizeIncrement(QtCore.QSize(32, 0))
-        self.widget_4.setStyleSheet("image: url(:/buttom/img/buttom/放大_zoom-in.svg);")
-        self.widget_4.setObjectName("widget_4")
+        self.pushButton_4 = QtWidgets.QPushButton(self.frame_18)
+        self.pushButton_4.setGeometry(QtCore.QRect(490, 10, 41, 41))
+        self.pushButton_4.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(230,230,250));\n"
+"image: url(:/buttom/img/buttom/放大_zoom-in.svg);\n"
+"border-radius:16px;\n"
+"padding:8px;")
+        self.pushButton_4.setText("")
+        self.pushButton_4.setObjectName("pushButton_4")
         self.widget_40 = QtWidgets.QWidget(self.scrollAreaWidgetContents_4)
         self.widget_40.setGeometry(QtCore.QRect(460, 10, 400, 400))
         self.widget_40.setMinimumSize(QtCore.QSize(361, 0))
@@ -689,6 +669,13 @@ class Ui_MainWindow(object):
         font.setPointSize(17)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
+        self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
+        self.label_5.setGeometry(QtCore.QRect(610, 630, 161, 51))
+        font = QtGui.QFont()
+        font.setFamily("Microsoft YaHei")
+        font.setPointSize(17)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_4)
         self.horizontalLayout_5.addWidget(self.scrollArea_2)
         self.page_window.addWidget(self.Page2)
@@ -706,30 +693,33 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.scrollArea_3.setObjectName("scrollArea_3")
-        self.scrollAreaWidgetContents_5 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 871, 765))
-        self.scrollAreaWidgetContents_5.setObjectName("scrollAreaWidgetContents_5")
-        self.widget_44 = QtWidgets.QWidget(self.scrollAreaWidgetContents_5)
-        self.widget_44.setGeometry(QtCore.QRect(30, 570, 841, 71))
-        self.widget_44.setMinimumSize(QtCore.QSize(361, 0))
-        self.widget_44.setMaximumSize(QtCore.QSize(176666, 17666))
-        self.widget_44.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 871, 765))
+        self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
+        self.widget_26 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_26.setGeometry(QtCore.QRect(30, 650, 841, 71))
+        self.widget_26.setMinimumSize(QtCore.QSize(361, 0))
+        self.widget_26.setMaximumSize(QtCore.QSize(176666, 17666))
+        self.widget_26.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius:28px")
-        self.widget_44.setObjectName("widget_44")
-        self.frame_19 = QtWidgets.QFrame(self.widget_44)
-        self.frame_19.setGeometry(QtCore.QRect(610, 10, 221, 51))
-        self.frame_19.setStyleSheet("QFrame{\n"
+        self.widget_26.setObjectName("widget_26")
+        self.frame_10 = QtWidgets.QFrame(self.widget_26)
+        self.frame_10.setGeometry(QtCore.QRect(720, 10, 101, 51))
+        self.frame_10.setStyleSheet("QFrame{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "border:0px solid red;\n"
 "border-radius:30px\n"
 "}")
-        self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_19.setObjectName("frame_19")
-        self.pushButton_13 = QtWidgets.QPushButton(self.frame_19)
-        self.pushButton_13.setGeometry(QtCore.QRect(0, 10, 100, 32))
-        self.pushButton_13.setMinimumSize(QtCore.QSize(100, 32))
-        self.pushButton_13.setStyleSheet("QPushButton{\n"
+        self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_10.setObjectName("frame_10")
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame_10)
+        self.pushButton_6.setGeometry(QtCore.QRect(0, 10, 100, 32))
+        self.pushButton_6.setMinimumSize(QtCore.QSize(100, 32))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setStyleSheet("QPushButton{\n"
 "    margin-right:3px;\n"
 " \n"
 "    color: rgba(0, 0, 0, 166);\n"
@@ -744,62 +734,136 @@ class Ui_MainWindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton_13.setObjectName("pushButton_13")
-        self.pushButton_14 = QtWidgets.QPushButton(self.frame_19)
-        self.pushButton_14.setGeometry(QtCore.QRect(120, 10, 100, 32))
-        self.pushButton_14.setMinimumSize(QtCore.QSize(100, 32))
-        self.pushButton_14.setStyleSheet("QPushButton{\n"
-"    margin-right:3px;\n"
-" \n"
-"    color: rgba(0, 0, 0, 166);\n"
-"    background-color: rgb(255, 255, 255);\n"
-"    border:1px outset rgb(212, 215, 220);\n"
-"    border-radius:12px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"\n"
-"}\n"
-"QPushButton:pressed {\n"
-"\n"
-"}\n"
-"")
-        self.pushButton_14.setObjectName("pushButton_14")
-        self.frame_20 = QtWidgets.QFrame(self.widget_44)
-        self.frame_20.setGeometry(QtCore.QRect(10, 10, 551, 51))
-        self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_20.setObjectName("frame_20")
-        self.lineEdit_8 = QtWidgets.QLineEdit(self.frame_20)
-        self.lineEdit_8.setGeometry(QtCore.QRect(22, 9, 461, 32))
-        self.lineEdit_8.setMinimumSize(QtCore.QSize(0, 32))
-        self.lineEdit_8.setStyleSheet("color: rgba(0, 0, 0, 35);\n"
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.frame_13 = QtWidgets.QFrame(self.widget_26)
+        self.frame_13.setGeometry(QtCore.QRect(10, 10, 551, 51))
+        self.frame_13.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_13.setObjectName("frame_13")
+        self.lineEdit_4 = QtWidgets.QLineEdit(self.frame_13)
+        self.lineEdit_4.setGeometry(QtCore.QRect(20, 10, 681, 32))
+        self.lineEdit_4.setMinimumSize(QtCore.QSize(0, 32))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.PlaceholderText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Text, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 35))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.ButtonText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
+        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 128))
+        brush.setStyle(QtCore.Qt.NoBrush)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.PlaceholderText, brush)
+        self.lineEdit_4.setPalette(palette)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.lineEdit_4.setFont(font)
+        self.lineEdit_4.setStyleSheet("color: rgba(0, 0, 0, 35);\n"
 "border:none;")
-        self.lineEdit_8.setObjectName("lineEdit_8")
-        self.widget_45 = QtWidgets.QWidget(self.frame_20)
-        self.widget_45.setGeometry(QtCore.QRect(510, 10, 32, 32))
-        self.widget_45.setMinimumSize(QtCore.QSize(32, 32))
-        self.widget_45.setMaximumSize(QtCore.QSize(32, 32))
-        self.widget_45.setSizeIncrement(QtCore.QSize(0, 2))
-        self.widget_45.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));\n"
+        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.pushButton_7 = QtWidgets.QPushButton(self.widget_26)
+        self.pushButton_7.setGeometry(QtCore.QRect(660, 20, 41, 41))
+        self.pushButton_7.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(230,230,250));\n"
+"image: url(:/buttom/img/buttom/放大_zoom-in.svg);\n"
+"border-radius:16px;\n"
+"padding:8px;")
+        self.pushButton_7.setText("")
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.pushButton_8 = QtWidgets.QPushButton(self.widget_26)
+        self.pushButton_8.setGeometry(QtCore.QRect(610, 20, 41, 41))
+        self.pushButton_8.setStyleSheet("background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(107, 128, 210));\n"
 "image: url(:/buttom_white/img/buttom_white/发送_send.svg);\n"
 "border-radius:16px;\n"
 "padding:8px;")
-        self.widget_45.setObjectName("widget_45")
-        self.widget_46 = QtWidgets.QWidget(self.scrollAreaWidgetContents_5)
-        self.widget_46.setGeometry(QtCore.QRect(480, 30, 400, 400))
-        self.widget_46.setMinimumSize(QtCore.QSize(361, 0))
-        self.widget_46.setMaximumSize(QtCore.QSize(176666, 17666))
-        self.widget_46.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.pushButton_8.setText("")
+        self.pushButton_8.setObjectName("pushButton_8")
+        self.widget_27 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_27.setGeometry(QtCore.QRect(460, 30, 400, 400))
+        self.widget_27.setMinimumSize(QtCore.QSize(361, 0))
+        self.widget_27.setMaximumSize(QtCore.QSize(176666, 17666))
+        self.widget_27.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius:28px")
-        self.widget_46.setObjectName("widget_46")
-        self.widget_47 = QtWidgets.QWidget(self.scrollAreaWidgetContents_5)
-        self.widget_47.setGeometry(QtCore.QRect(20, 30, 400, 400))
-        self.widget_47.setMinimumSize(QtCore.QSize(361, 0))
-        self.widget_47.setMaximumSize(QtCore.QSize(176666, 17666))
-        self.widget_47.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.widget_27.setObjectName("widget_27")
+        self.horizontalLayout_19 = QtWidgets.QHBoxLayout(self.widget_27)
+        self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.graphicsView_5 = QtWidgets.QGraphicsView(self.widget_27)
+        self.graphicsView_5.setObjectName("graphicsView_5")
+        self.horizontalLayout_19.addWidget(self.graphicsView_5)
+        self.widget_28 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
+        self.widget_28.setGeometry(QtCore.QRect(20, 30, 400, 400))
+        self.widget_28.setMinimumSize(QtCore.QSize(361, 0))
+        self.widget_28.setMaximumSize(QtCore.QSize(176666, 17666))
+        self.widget_28.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius:28px")
-        self.widget_47.setObjectName("widget_47")
-        self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_5)
+        self.widget_28.setObjectName("widget_28")
+        self.horizontalLayout_20 = QtWidgets.QHBoxLayout(self.widget_28)
+        self.horizontalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.graphicsView_6 = QtWidgets.QGraphicsView(self.widget_28)
+        self.graphicsView_6.setObjectName("graphicsView_6")
+        self.horizontalLayout_20.addWidget(self.graphicsView_6)
+        self.label_7 = QtWidgets.QLabel(self.scrollAreaWidgetContents_2)
+        self.label_7.setGeometry(QtCore.QRect(620, 430, 161, 51))
+        font = QtGui.QFont()
+        font.setFamily("Microsoft YaHei")
+        font.setPointSize(17)
+        self.label_7.setFont(font)
+        self.label_7.setObjectName("label_7")
+        self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_2)
         self.horizontalLayout_6.addWidget(self.scrollArea_3)
         self.page_window.addWidget(self.Page3)
         self.Page4 = QtWidgets.QWidget()
@@ -817,7 +881,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.scrollArea_4.setObjectName("scrollArea_4")
         self.scrollAreaWidgetContents_6 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_6.setGeometry(QtCore.QRect(0, 0, 82, 16))
+        self.scrollAreaWidgetContents_6.setGeometry(QtCore.QRect(0, 0, 871, 765))
         self.scrollAreaWidgetContents_6.setObjectName("scrollAreaWidgetContents_6")
         self.widget_48 = QtWidgets.QWidget(self.scrollAreaWidgetContents_6)
         self.widget_48.setGeometry(QtCore.QRect(20, 650, 841, 71))
@@ -918,7 +982,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.page_window.setCurrentIndex(1)
+        self.page_window.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -939,16 +1003,16 @@ class Ui_MainWindow(object):
         self.label_54.setText(_translate("MainWindow", "StatusLSale"))
         self.label.setText(_translate("MainWindow", "数字水印"))
         self.pushButton_3.setText(_translate("MainWindow", "选择文件"))
-        self.pushButton_2.setText(_translate("MainWindow", "水印解析"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "输入嵌入的字符串/水印的长度"))
         self.label_3.setText(_translate("MainWindow", "已添加水印"))
         self.pushButton_11.setText(_translate("MainWindow", "选择图片文件"))
         self.pushButton_12.setText(_translate("MainWindow", "选择水印文件"))
-        self.lineEdit_7.setPlaceholderText(_translate("MainWindow", "输入水印的尺寸（50 50）"))
+        self.lineEdit_7.setPlaceholderText(_translate("MainWindow", "输入水印的尺寸 (50, 50)"))
         self.label_4.setText(_translate("MainWindow", "解析出的水印"))
-        self.pushButton_13.setText(_translate("MainWindow", "button1"))
-        self.pushButton_14.setText(_translate("MainWindow", "make offer"))
-        self.lineEdit_8.setPlaceholderText(_translate("MainWindow", "输入嵌入的字符串"))
+        self.label_5.setText(_translate("MainWindow", "已添加水印"))
+        self.pushButton_6.setText(_translate("MainWindow", "选择文件"))
+        self.lineEdit_4.setPlaceholderText(_translate("MainWindow", "输入嵌入的比特流/水印的长度（10011）"))
+        self.label_7.setText(_translate("MainWindow", "已添加水印"))
         self.pushButton_15.setText(_translate("MainWindow", "button1"))
         self.pushButton_16.setText(_translate("MainWindow", "make offer"))
         self.lineEdit_9.setPlaceholderText(_translate("MainWindow", "输入嵌入的字符串"))

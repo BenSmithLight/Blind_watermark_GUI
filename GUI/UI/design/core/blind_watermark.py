@@ -43,6 +43,8 @@ class WaterMark:
         if mode == 'img':
             # wm = cv2.imread(filename=wm_content, flags=cv2.IMREAD_GRAYSCALE)
             wm = cv2.imdecode(np.fromfile(wm_content, dtype=np.uint8), 0)
+            # 获取图像大小
+            wm_shape = wm.shape
 
             assert wm is not None, 'file "{filename}" not read'.format(
                 filename=wm_content)
@@ -64,6 +66,12 @@ class WaterMark:
             self.wm_bit)  # 通过password_wm作为随机数种子对水印进行乱序
 
         self.bwm_core.read_wm(self.wm_bit)
+
+        # 如果变量wm_shape存在，则返回该变量
+        try:
+            return wm_shape
+        except:
+            pass
 
     def embed(self, filename=None, compression_ratio=None):
         '''
