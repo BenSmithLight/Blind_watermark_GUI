@@ -31,18 +31,6 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.setWindowFlags(Qt.FramelessWindowHint)  # 设置窗口标志：隐藏窗口边框
 
-        # 获取列表
-        list_obj = self.findChild(QListWidget, "listWidget")
-        list_obj.itemClicked.connect(self.list_btn_function)
-
-        # 添加选择文件的按钮
-        self.pushButton_3.clicked.connect(partial(self.open_file, 1))  # 字符串文件选择
-        self.pushButton_11.clicked.connect(partial(self.open_file, 2))  # 图片文件选择
-        self.pushButton_12.clicked.connect(partial(self.open_file, 3))  # 水印文件选择
-        self.pushButton_6.clicked.connect(partial(self.open_file, 4))  # 水印文件选择
-
-        
-
         # 设置label隐藏
         self.label_3.hide()
         self.label_4.hide()
@@ -50,17 +38,30 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         self.label_7.hide()
         self.label_8.hide()
 
-        # 添加开始嵌入按钮
-        self.pushButton.clicked.connect(partial(self.start_add, 'str'))
-        self.pushButton_17.clicked.connect(partial(self.start_add, 'img'))
-        self.pushButton_8.clicked.connect(partial(self.start_add, 'bit'))
-
         # 设置文本颜色
         self.lineEdit_3.setStyleSheet("color: rgb(0, 0, 0);")
         self.lineEdit_7.setStyleSheet("color: rgb(0, 0, 0);")
         self.lineEdit_4.setStyleSheet("color: rgb(0, 0, 0);")
         self.lineEdit_6.setStyleSheet("color: rgb(0, 0, 0);")
         self.label_8.setStyleSheet("color: rgb(255, 255, 255);")
+
+        # 获取列表，并绑定点击事件
+        list_obj = self.findChild(QListWidget, "listWidget")
+        list_obj.itemClicked.connect(self.list_btn_function)
+
+        # 添加选择文件的按钮
+        self.pushButton_3.clicked.connect(partial(self.open_file,
+                                                  1))  # 字符串文件选择
+        self.pushButton_11.clicked.connect(partial(self.open_file,
+                                                   2))  # 图片文件选择
+        self.pushButton_12.clicked.connect(partial(self.open_file,
+                                                   3))  # 水印文件选择
+        self.pushButton_6.clicked.connect(partial(self.open_file, 4))  # 水印文件选择
+
+        # 添加开始嵌入按钮
+        self.pushButton.clicked.connect(partial(self.start_add, 'str'))
+        self.pushButton_17.clicked.connect(partial(self.start_add, 'img'))
+        self.pushButton_8.clicked.connect(partial(self.start_add, 'bit'))
 
         # 添加水印解析按钮
         self.pushButton_2.clicked.connect(partial(self.read_wm, 'str'))
@@ -109,6 +110,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 password_wm = int(self.lineEdit_6.text())
             except:
                 pass
+
     # 定义切换页面的函数
     def list_btn_function(self):
         item = self.listWidget.currentItem()
@@ -122,7 +124,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.page_window.setCurrentIndex(2)
         elif item.text() == "设置":
             self.page_window.setCurrentIndex(3)
-    
+
     # 定义打开文件的函数
     def open_file(self, view=None):
         global file_name  # 待处理的图片
@@ -142,7 +144,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.graphicsView.setScene(scene)
             # 缩放大图
             self.graphicsView.fitInView(scene.itemsBoundingRect(),
-                                         QtCore.Qt.KeepAspectRatio)
+                                        QtCore.Qt.KeepAspectRatio)
         elif (view == 2):
             file_name = QtWidgets.QFileDialog.getOpenFileName(
                 self, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
@@ -155,7 +157,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.graphicsView_4.setScene(scene)
             # 缩放大图
             self.graphicsView_4.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
         elif (view == 3):
             wm_img = QtWidgets.QFileDialog.getOpenFileName(
                 self, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
@@ -168,7 +170,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.graphicsView_7.setScene(scene)
             # 缩放大图
             self.graphicsView_7.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
         elif (view == 4):
             file_name = QtWidgets.QFileDialog.getOpenFileName(
                 self, "选择文件", "./", "Image Files (*.png *.jpg *.bmp)")
@@ -181,12 +183,14 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.graphicsView_6.setScene(scene)
             # 缩放大图
             self.graphicsView_6.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
 
     # 定义开始嵌入的函数
     def start_add(self, mod=None):
+        # 显示运行状态
         self.label_8.show()
         QApplication.processEvents()  # 强制更新UI
+
         global wm_shape  # 水印图片的大小
         # 向图像添加水印
         bwm = WaterMark(password_img=password_img, password_wm=password_wm)
@@ -203,6 +207,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         # 参数检查部分
         if mod is None:
             return
+
         elif mod == 'str':
             # 检查输入，否则弹窗提醒
             if self.lineEdit_3.text() == '':
@@ -212,9 +217,9 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             if file_name[0] == '':
                 QtWidgets.QMessageBox.warning(self, '警告', '请选择文件')
                 return
+
             # 获取嵌入的字符串
-            str = self.lineEdit_3.text()
-            wm = str
+            wm = self.lineEdit_3.text()
             bwm.read_wm(wm_content=wm, mode='str')
             # 获取水印长度
             len_wm = len(bwm.wm_bit)
@@ -223,21 +228,21 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             # 处理图片
             bwm.read_img(file_name[0])
             # 输出叠加水印的图片
-            bwm.embed(file_name[0][:-4] + '_with_str_mark' + file_name[0][-4:])
-            output_file = file_name[0][:-4] + '_with_str_mark' + file_name[0][
-                -4:]
+            out_file = file_name[0][:-4] + '_with_str_mark' + file_name[0][-4:]
+            bwm.embed(out_file)
 
             # 显示嵌入后的图片
             # 创建scene
             scene = QGraphicsScene()
             # 添加图片
-            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(out_file)))
             # 设置scene
             self.graphicsView_2.setScene(scene)
             # 缩放大图
             self.graphicsView_2.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
             self.label_3.show()
+
         elif mod == 'img':
             # 检查文件输入，否则弹窗提醒
             if file_name[0] == '':
@@ -247,6 +252,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             if wm_img[0] == '':
                 QtWidgets.QMessageBox.warning(self, '警告', '请选择水印文件')
                 return
+
             # 获取嵌入的图片
             wm = wm_img[0]
             wm_shape = bwm.read_wm(wm_content=wm, mode='img')
@@ -255,27 +261,28 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             # 处理图片
             bwm.read_img(file_name[0])
             # 输出叠加水印的图片
-            embed_img = bwm.embed(file_name[0][:-4] + '_with_img_mark' +
-                                  file_name[0][-4:])
+            out_file = file_name[0][:-4] + '_with_img_mark' + file_name[0][-4:]
+            embed_img = bwm.embed(out_file)
+
             if (embed_img == 'error'):
                 # 输出提示信息
                 self.lineEdit_7.setText('水印图片过大，无法嵌入')
                 self.label_8.hide()
                 return
-            output_file = file_name[0][:-4] + '_with_img_mark' + file_name[0][
-                -4:]
+
             # 显示嵌入后的图片
             # 创建scene
             scene = QGraphicsScene()
             # 添加图片
-            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(out_file)))
             # 设置scene
             self.graphicsView_3.setScene(scene)
             # 缩放大图
             self.graphicsView_3.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
             self.label_5.show()
             self.label_4.hide()
+
         elif mod == 'bit':
             # 检查输入，否则弹窗提醒
             if self.lineEdit_4.text() == '':
@@ -285,6 +292,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             if file_name[0] == '':
                 QtWidgets.QMessageBox.warning(self, '警告', '请选择文件')
                 return
+
             # 获取嵌入的字符串
             bit_data = self.lineEdit_4.text()
             # 将输入的10110等字符串转换为[True, False, True, True, True, False]等列表
@@ -298,27 +306,28 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             # 处理图片
             bwm.read_img(file_name[0])
             # 输出叠加水印的图片
-            bwm.embed(file_name[0][:-4] + '_with_bit_mark' + file_name[0][-4:])
-            output_file = file_name[0][:-4] + '_with_bit_mark' + file_name[0][
-                -4:]
+            out_file = file_name[0][:-4] + '_with_bit_mark' + file_name[0][-4:]
+            bwm.embed(out_file)
 
             # 显示嵌入后的图片
             # 创建scene
             scene = QGraphicsScene()
             # 添加图片
-            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(output_file)))
+            scene.addItem(QGraphicsPixmapItem(QtGui.QPixmap(out_file)))
             # 设置scene
             self.graphicsView_5.setScene(scene)
             # 缩放大图
             self.graphicsView_5.fitInView(scene.itemsBoundingRect(),
-                                           QtCore.Qt.KeepAspectRatio)
+                                          QtCore.Qt.KeepAspectRatio)
             self.label_7.show()
         self.label_8.hide()
 
     # 定义水印解析的函数
     def read_wm(self, mod=None):
+        # 显示运行状态
         self.label_8.show()
         QApplication.processEvents()  # 强制更新UI
+
         # 检查文件输入，否则弹窗提醒
         try:
             if file_name[0] == '':
@@ -348,7 +357,6 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             len_wm = int(self.lineEdit_3.text())
             bwm = WaterMark(password_img=password_img, password_wm=password_wm)
             wm_extract = bwm.extract(file_name[0], wm_shape=len_wm, mode='str')
-            # print(wm_extract)
             self.lineEdit_3.setText("水印内容为： {}".format(wm_extract))
         elif mod == 'img':
             # 检查文件的名字中是否包含mark，否则弹窗提醒
@@ -378,7 +386,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             self.graphicsView_12.setScene(scene)
             # 缩放大图
             self.graphicsView_12.fitInView(scene.itemsBoundingRect(),
-                                            QtCore.Qt.KeepAspectRatio)
+                                           QtCore.Qt.KeepAspectRatio)
             self.label_5.hide()
             self.label_4.show()
         elif mod == 'bit':
