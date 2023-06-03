@@ -157,6 +157,6 @@ class WaterMark:
                                         base=2))[2:]).decode('utf-8',
                                                                 errors='replace')
             except:
-                wm = '解析错误，请检查密码和水印长度是否正确'
+                wm = '解析错误，请检查密码和水印长度'
 
         return wm
