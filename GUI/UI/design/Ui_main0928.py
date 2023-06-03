@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Learn\大学课程\数字图像处理\课程设计\Source\GUI\UI\design\main0928.ui'
+# Form implementation generated from reading ui file 'd:\Learn\大学课程\数字图像处理\课程设计\Source\GUI\UI_cleaning\design\main0928.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1315, 940)
+        MainWindow.resize(1295, 940)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -269,7 +269,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 871, 765))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 908, 747))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.widget_23 = QtWidgets.QWidget(self.scrollAreaWidgetContents)
         self.widget_23.setGeometry(QtCore.QRect(30, 650, 841, 71))
@@ -279,7 +279,7 @@ class Ui_MainWindow(object):
 "border-radius:28px")
         self.widget_23.setObjectName("widget_23")
         self.frame_8 = QtWidgets.QFrame(self.widget_23)
-        self.frame_8.setGeometry(QtCore.QRect(720, 10, 101, 51))
+        self.frame_8.setGeometry(QtCore.QRect(710, 10, 111, 51))
         self.frame_8.setStyleSheet("QFrame{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "border:0px solid red;\n"
@@ -289,7 +289,7 @@ class Ui_MainWindow(object):
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
         self.pushButton_3 = QtWidgets.QPushButton(self.frame_8)
-        self.pushButton_3.setGeometry(QtCore.QRect(0, 10, 100, 32))
+        self.pushButton_3.setGeometry(QtCore.QRect(10, 10, 100, 32))
         self.pushButton_3.setMinimumSize(QtCore.QSize(100, 32))
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -456,17 +456,17 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 871, 765))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 908, 747))
         self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
         self.widget_29 = QtWidgets.QWidget(self.scrollAreaWidgetContents_4)
-        self.widget_29.setGeometry(QtCore.QRect(30, 690, 841, 71))
+        self.widget_29.setGeometry(QtCore.QRect(10, 670, 891, 71))
         self.widget_29.setMinimumSize(QtCore.QSize(361, 0))
         self.widget_29.setMaximumSize(QtCore.QSize(176666, 17666))
         self.widget_29.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-radius:28px")
         self.widget_29.setObjectName("widget_29")
         self.frame_17 = QtWidgets.QFrame(self.widget_29)
-        self.frame_17.setGeometry(QtCore.QRect(560, 10, 264, 52))
+        self.frame_17.setGeometry(QtCore.QRect(560, 10, 321, 52))
         self.frame_17.setStyleSheet("QFrame{\n"
 "    background-color: rgb(255, 255, 255);\n"
 "border:0px solid red;\n"
@@ -672,14 +672,14 @@ class Ui_MainWindow(object):
         self.graphicsView_12.setObjectName("graphicsView_12")
         self.horizontalLayout_14.addWidget(self.graphicsView_12)
         self.label_4 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_4.setGeometry(QtCore.QRect(590, 630, 161, 51))
+        self.label_4.setGeometry(QtCore.QRect(580, 620, 171, 51))
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(17)
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(self.scrollAreaWidgetContents_4)
-        self.label_5.setGeometry(QtCore.QRect(610, 630, 161, 51))
+        self.label_5.setGeometry(QtCore.QRect(580, 620, 161, 51))
         font = QtGui.QFont()
         font.setFamily("Microsoft YaHei")
         font.setPointSize(17)
@@ -703,7 +703,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setAlignment(QtCore.Qt.AlignJustify|QtCore.Qt.AlignTop)
         self.scrollArea_3.setObjectName("scrollArea_3")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 871, 765))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 908, 747))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.widget_26 = QtWidgets.QWidget(self.scrollAreaWidgetContents_2)
         self.widget_26.setGeometry(QtCore.QRect(30, 650, 841, 71))
@@ -1014,7 +1014,7 @@ class Ui_MainWindow(object):
         item = self.listWidget.item(3)
         item.setText(_translate("MainWindow", "设置"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.label_54.setText(_translate("MainWindow", "StatusLSale"))
+        self.label_54.setText(_translate("MainWindow", "Click to close"))
         self.label.setText(_translate("MainWindow", "数字水印"))
         self.pushButton_3.setText(_translate("MainWindow", "选择文件"))
         self.lineEdit_3.setPlaceholderText(_translate("MainWindow", "输入嵌入的字符串/水印的长度"))
@@ -1029,4 +1029,4 @@ class Ui_MainWindow(object):
         self.label_7.setText(_translate("MainWindow", "已添加水印"))
         self.label_9.setText(_translate("MainWindow", "水印密码"))
         self.lineEdit_6.setPlaceholderText(_translate("MainWindow", "1"))
-import resources_rc
+import design.resources_rc

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1315</width>
+    <width>1295</width>
     <height>940</height>
    </rect>
   </property>
@@ -505,7 +505,7 @@ border-radius:30px
                 <string notr="true">color: rgb(198, 198, 198);</string>
                </property>
                <property name="text">
-                <string>StatusLSale</string>
+                <string>Click to close</string>
                </property>
               </widget>
              </item>
@@ -599,8 +599,8 @@ QPushButton:pressed {
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>871</width>
-                   <height>765</height>
+                   <width>908</width>
+                   <height>747</height>
                   </rect>
                  </property>
                  <widget class="QWidget" name="widget_23" native="true">
@@ -631,9 +631,9 @@ border-radius:28px</string>
                   <widget class="QFrame" name="frame_8">
                    <property name="geometry">
                     <rect>
-                     <x>720</x>
+                     <x>710</x>
                      <y>10</y>
-                     <width>101</width>
+                     <width>111</width>
                      <height>51</height>
                     </rect>
                    </property>
@@ -653,7 +653,7 @@ border-radius:30px
                    <widget class="QPushButton" name="pushButton_3">
                     <property name="geometry">
                      <rect>
-                      <x>0</x>
+                      <x>10</x>
                       <y>10</y>
                       <width>100</width>
                       <height>32</height>
@@ -1093,16 +1093,16 @@ border-radius:28px</string>
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>871</width>
-                   <height>765</height>
+                   <width>908</width>
+                   <height>747</height>
                   </rect>
                  </property>
                  <widget class="QWidget" name="widget_29" native="true">
                   <property name="geometry">
                    <rect>
-                    <x>30</x>
-                    <y>690</y>
-                    <width>841</width>
+                    <x>10</x>
+                    <y>670</y>
+                    <width>891</width>
                     <height>71</height>
                    </rect>
                   </property>
@@ -1127,7 +1127,7 @@ border-radius:28px</string>
                     <rect>
                      <x>560</x>
                      <y>10</y>
-                     <width>264</width>
+                     <width>321</width>
                      <height>52</height>
                     </rect>
                    </property>
@@ -1630,9 +1630,9 @@ border-radius:28px</string>
                  <widget class="QLabel" name="label_4">
                   <property name="geometry">
                    <rect>
-                    <x>590</x>
-                    <y>630</y>
-                    <width>161</width>
+                    <x>580</x>
+                    <y>620</y>
+                    <width>171</width>
                     <height>51</height>
                    </rect>
                   </property>
@@ -1649,8 +1649,8 @@ border-radius:28px</string>
                  <widget class="QLabel" name="label_5">
                   <property name="geometry">
                    <rect>
-                    <x>610</x>
-                    <y>630</y>
+                    <x>580</x>
+                    <y>620</y>
                     <width>161</width>
                     <height>51</height>
                    </rect>
@@ -1703,8 +1703,8 @@ border-radius:28px</string>
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>871</width>
-                   <height>765</height>
+                   <width>908</width>
+                   <height>747</height>
                   </rect>
                  </property>
                  <widget class="QWidget" name="widget_26" native="true">
